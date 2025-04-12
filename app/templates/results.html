@@ -1,0 +1,61 @@
+<!-- fastique/app/templates/results.html -->
+<div class="results-container">
+    <div class="results-header">
+        <div class="results-count">
+            <span id="results-count">{{ results|length }}</span> results found
+        </div>
+        <div class="results-actions">
+            <button id="select-all-btn" class="btn btn-secondary">Select All</button>
+            <button id="export-results-btn" class="btn btn-primary">Export</button>
+        </div>
+    </div>
+
+    {% if results %}
+    <table class="results-table">
+        <thead>
+            <tr>
+                <th style="width: 40px;"><input type="checkbox" id="check-all"></th>
+                <th style="width: 40%;">Name</th>
+                <th style="width: 30%;">Path</th>
+                <th style="width: 15%;">Size</th>
+                <th style="width: 15%;">Modified</th>
+            </tr>
+        </thead>
+        <tbody id="results-body">
+            {% for result in results %}
+            <tr data-path="{{ result.full_path }}" class="result-row">
+                <td><input type="checkbox" class="result-check"></td>
+                <td>
+                    <div class="file-name">
+                        <span class="file-icon 
+                            {% if result.is_directory %}folder-icon{% 
+                            elif result.ext == '.pdf' %}pdf-icon{% 
+                            elif result.ext in ['.doc', '.docx'] %}word-icon{% 
+                            elif result.ext in ['.xls', '.xlsx'] %}excel-icon{% 
+                            elif result.ext in ['.ppt', '.pptx'] %}powerpoint-icon{% 
+                            elif result.ext in ['.txt', '.md'] %}text-icon{% 
+                            elif result.ext in ['.jpg', '.jpeg', '.png', '.gif'] %}image-icon{% 
+                            elif result.ext in ['.mp3', '.wav'] %}audio-icon{% 
+                            elif result.ext in ['.mp4', '.mov'] %}video-icon{% 
+                            elif result.ext in ['.zip', '.rar', '.7z'] %}archive-icon{% 
+                            elif result.ext in ['.py', '.js', '.html', '.css'] %}code-icon{% 
+                            else %}file-icon{% endif %}">
+                            <i class="fas {% if result.is_directory %}fa-folder{% else %}fa-file{% endif %}"></i>
+                        </span>
+                        {{ result.filename }}
+                    </div>
+                </td>
+                <td>{{ result.path }}</td>
+                <td>{{ result.size_formatted }}</td>
+                <td>{{ result.modified_time_formatted }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="no-results-message">
+        <p>No results found for your search.</p>
+        <p>Try modifying your search query or check different locations.</p>
+    </div>
+    {% endif %}
+</div>

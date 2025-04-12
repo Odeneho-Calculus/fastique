@@ -1,0 +1,12 @@
+# Web framework
+Flask==2.3.3
+Werkzeug==2.3.7
+
+# Optional functionality
+send2trash==1.8.2  # For sending files to trash instead of permanent deletion
+
+# Development and testing
+pytest==7.4.0
+pytest-cov==4.1.0
+black==23.7.0
+flake8==6.1.0

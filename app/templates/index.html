@@ -1,0 +1,150 @@
+<!-- fastique/app/templates/index.html -->
+{% extends "base.html" %}
+
+{% block title %}Fastique - Instant File Search{% endblock %}
+
+{% block content %}
+<div class="search-container">
+    <div class="search-input-group">
+        <input type="text" id="search-input" class="search-input" placeholder="Search for files and folders..."
+            autofocus>
+        <button id="search-button" class="search-button">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <div class="search-options">
+        <div class="search-checkbox-group">
+            <input type="checkbox" id="use-regex">
+            <label for="use-regex">Use regex</label>
+        </div>
+        <div class="search-checkbox-group">
+            <input type="checkbox" id="case-sensitive">
+            <label for="case-sensitive">Case sensitive</label>
+        </div>
+        <div class="search-checkbox-group">
+            <input type="checkbox" id="include-hidden">
+            <label for="include-hidden">Include hidden files</label>
+        </div>
+
+        <div class="search-path-selector">
+            <label for="search-path">Search in:</label>
+            <select id="search-path">
+                {% for path in search_paths %}
+                <option value="{{ path }}">{{ path }}</option>
+                {% endfor %}
+                <option value="custom">Custom location...</option>
+            </select>
+            <input type="text" id="custom-path" class="form-input" style="display: none;"
+                placeholder="Enter custom path...">
+        </div>
+    </div>
+</div>
+
+<div class="results-container">
+    <div class="results-header">
+        <div class="results-count">
+            <span id="results-count">0</span> results
+        </div>
+        <div id="search-time"></div>
+    </div>
+
+    <table class="results-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Path</th>
+                <th>Modified</th>
+            </tr>
+        </thead>
+        <tbody id="results-body">
+            <!-- Results will be populated by JavaScript -->
+        </tbody>
+    </table>
+
+    <div class="empty-state" id="empty-state">
+        <div class="empty-state-icon">
+            <i class="fas fa-search fa-3x"></i>
+        </div>
+        <p>Type in the search box to find files</p>
+    </div>
+
+    <div class="loading-indicator" id="loading-indicator" style="display: none;">
+        <div class="spinner"></div>
+        <p>Searching...</p>
+    </div>
+</div>
+
+<!-- Context Menu -->
+<div class="context-menu" id="file-context-menu">
+    <div class="context-menu-item" id="ctx-open">
+        <i class="fas fa-external-link-alt"></i> Open
+    </div>
+    <div class="context-menu-item" id="ctx-open-location">
+        <i class="fas fa-folder-open"></i> Open Location
+    </div>
+    <div class="context-menu-divider"></div>
+    <div class="context-menu-item" id="ctx-copy">
+        <i class="fas fa-copy"></i> Copy
+    </div>
+    <div class="context-menu-item" id="ctx-move">
+        <i class="fas fa-cut"></i> Move
+    </div>
+    <div class="context-menu-item" id="ctx-rename">
+        <i class="fas fa-edit"></i> Rename
+    </div>
+    <div class="context-menu-divider"></div>
+    <div class="context-menu-item" id="ctx-delete">
+        <i class="fas fa-trash-alt"></i> Delete
+    </div>
+    <div class="context-menu-divider"></div>
+    <div class="context-menu-item" id="ctx-properties">
+        <i class="fas fa-info-circle"></i> Properties
+    </div>
+</div>
+
+<!-- Modal templates for file operations -->
+<div class="modal-backdrop" id="rename-modal">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="modal-title">Rename File</span>
+            <span class="modal-close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="form-label" for="rename-input">New name:</label>
+                <input type="text" id="rename-input" class="form-input">
+                <input type="hidden" id="rename-path">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" id="rename-cancel">Cancel</button>
+            <button class="btn btn-primary" id="rename-confirm">Rename</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop" id="delete-modal">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="modal-title">Delete File</span>
+            <span class="modal-close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure you want to delete this file?</p>
+            <p id="delete-filename" class="font-bold"></p>
+            <input type="hidden" id="delete-path">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" id="delete-cancel">Cancel</button>
+            <button class="btn btn-danger" id="delete-confirm">Delete</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+<script src="{{ url_for('static', filename='js/file_operations.js') }}"></script>
+{% endblock %}

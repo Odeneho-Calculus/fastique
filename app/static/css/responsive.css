@@ -1,0 +1,187 @@
+/* fastique/app/static/css/responsive.css */
+/* Responsive styles for Fastique application */
+
+/* Small devices (phones, 576px and down) */
+@media (max-width: 576px) {
+    .search-input-group {
+        flex-direction: column;
+        border-radius: 8px;
+        box-shadow: none;
+    }
+
+    .search-input {
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        box-shadow: 0 2px 5px var(--shadow-color);
+    }
+
+    .search-button {
+        border-radius: 8px;
+        width: 100%;
+        box-shadow: 0 2px 5px var(--shadow-color);
+    }
+
+    .search-options {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-path-selector {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .results-table th:nth-child(3),
+    .results-table td:nth-child(3) {
+        display: none;
+        /* Hide the path column on small screens */
+    }
+
+    .results-table th:nth-child(4),
+    .results-table td:nth-child(4) {
+        display: none;
+        /* Hide the modified date column on small screens */
+    }
+
+    .modal {
+        width: 95%;
+    }
+
+    .about-container {
+        padding: 1rem;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .error-container {
+        padding: 1rem;
+    }
+
+    .error-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .error-actions .btn {
+        width: 100%;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 577px) and (max-width: 768px) {
+    .main-container {
+        padding: 1rem;
+    }
+
+    .results-table th:nth-child(3),
+    .results-table td:nth-child(3) {
+        display: none;
+        /* Hide the path column on medium screens */
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 769px) and (max-width: 992px) {
+    .main-container {
+        padding: 1.5rem;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 993px) {
+    body {
+        padding-left: var(--sidebar-width);
+    }
+
+    .sidebar {
+        transform: translateX(0);
+    }
+
+    .toggle-sidebar-btn {
+        display: none;
+    }
+
+    .main-container {
+        padding: 2rem;
+        margin-left: 0;
+        max-width: calc(1200px - var(--sidebar-width));
+    }
+
+    .header-container {
+        max-width: calc(1200px - var(--sidebar-width));
+    }
+}
+
+/* Mobile sidebar adjustments */
+@media (max-width: 992px) {
+    body {
+        padding-left: 0;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    body.sidebar-visible .sidebar {
+        transform: translateX(0);
+    }
+
+    .toggle-sidebar-btn {
+        display: flex;
+    }
+}
+
+/* Print styles */
+@media print {
+
+    .header,
+    .footer,
+    .search-container,
+    .sidebar,
+    .sidebar-overlay,
+    .modal-backdrop,
+    .toggle-sidebar-btn {
+        display: none !important;
+    }
+
+    body {
+        padding-left: 0 !important;
+    }
+
+    .main-container {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .results-container {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    .results-actions,
+    .btn,
+    .context-menu-item {
+        display: none !important;
+    }
+
+    body {
+        font-size: 12pt;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    .results-table {
+        width: 100%;
+    }
+}

@@ -1,0 +1,70 @@
+<!-- fastique/app/templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Fastique - Instant File Search{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+    <!-- Sidebar for navigation -->
+    <div class="sidebar">
+        <div class="sidebar-title">Fastique Menu</div>
+        <div class="sidebar-item">
+            <i class="fas fa-home"></i> Home
+        </div>
+        <div class="sidebar-item">
+            <i class="fas fa-search"></i> Search
+        </div>
+        <div class="sidebar-item">
+            <i class="fas fa-folder"></i> Recent Locations
+        </div>
+        <div class="sidebar-item">
+            <i class="fas fa-history"></i> Search History
+        </div>
+        <div class="sidebar-title">Settings</div>
+        <div class="sidebar-item">
+            <i class="fas fa-cog"></i> Preferences
+        </div>
+        <div class="sidebar-item">
+            <i class="fas fa-info-circle"></i> About
+        </div>
+    </div>
+    <div class="sidebar-overlay"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-search"></i>
+                <a href="{{ url_for('main.index') }}">Fastique</a>
+            </div>
+            <button class="toggle-sidebar-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <div class="main-container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; {{ current_year }} Fastique - Instant File Search Utility</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/ui_controls.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

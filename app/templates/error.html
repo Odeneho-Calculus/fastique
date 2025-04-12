@@ -1,0 +1,30 @@
+<!-- fastique/app/templates/error.html -->
+{% extends "base.html" %}
+
+{% block title %}Error - Fastique{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <div class="error-header">
+        <h1>Oops! Something went wrong</h1>
+    </div>
+    <div class="error-content">
+        <div class="error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <div class="error-message">
+            <h2>{{ error_title }}</h2>
+            <p>{{ error_message }}</p>
+            {% if error_details %}
+            <div class="error-details">
+                <pre>{{ error_details }}</pre>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="error-actions">
+        <a href="{{ url_for('main.index') }}" class="btn btn-primary">Back to Home</a>
+        <button class="btn btn-secondary" onclick="window.history.back()">Go Back</button>
+    </div>
+</div>
+{% endblock %}

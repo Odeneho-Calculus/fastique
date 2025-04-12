@@ -1,0 +1,88 @@
+<!-- fastique/app/templates/about.html -->
+{% extends "base.html" %}
+
+{% block title %}About Fastique{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <h1>About Fastique</h1>
+
+    <div class="about-section">
+        <h2>Instant File System Search Utility</h2>
+        <p>Fastique is a high-performance desktop search utility built for lightning-fast file discovery and
+            manipulation.
+            Designed with a sleek web-based interface powered by Flask and styled with modern HTML/CSS, it offers
+            real-time
+            results and seamless file operations—all while keeping the core logic in Python.</p>
+    </div>
+
+    <div class="about-section features">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Instant Search</h3>
+                <ul>
+                    <li>Live results as you type</li>
+                    <li>Smart filtering by file type, date, and size</li>
+                    <li>Advanced options including regex and case sensitivity</li>
+                </ul>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Built-In File Operations</h3>
+                <ul>
+                    <li>Open, copy, move, delete, and rename files</li>
+                    <li>Create new folders and files</li>
+                    <li>View detailed file metadata</li>
+                </ul>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <h3>Modern Web UI</h3>
+                <ul>
+                    <li>Responsive design with smooth animations</li>
+                    <li>Search bar with auto-suggestions</li>
+                    <li>Multiple view options for results</li>
+                </ul>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Performance Focused</h3>
+                <ul>
+                    <li>Threaded search to keep UI responsive</li>
+                    <li>Smart indexing for frequent paths</li>
+                    <li>Memory and CPU efficiency</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-section tech-stack">
+        <h2>Technology Stack</h2>
+        <ul class="tech-list">
+            <li><strong>Backend:</strong> Python, Flask</li>
+            <li><strong>Core Libraries:</strong> os, shutil, subprocess, threading</li>
+            <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript</li>
+            <li><strong>Architecture:</strong> Modular design with threading for performance</li>
+        </ul>
+    </div>
+
+    <div class="about-section">
+        <h2>Version Information</h2>
+        <p><strong>Current Version:</strong> 1.0</p>
+        <p><strong>Release Date:</strong> 2025</p>
+    </div>
+</div>
+{% endblock %}

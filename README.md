@@ -1,0 +1,2 @@
+# fastique
+deep search
